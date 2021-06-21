@@ -547,12 +547,12 @@ controller:
   metrics:
     port: 10254
     # if this port is changed, change healthz-port: in extraArgs: accordingly
-    enabled: false
+    enabled: true
 
     service:
-      annotations: {}
-      # prometheus.io/scrape: "true"
-      # prometheus.io/port: "10254"
+      annotations: 
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
 
       # clusterIP: ""
 
@@ -569,17 +569,17 @@ controller:
       # nodePort: ""
 
     serviceMonitor:
-      enabled: false
+      enabled: true
       additionalLabels: {}
       # The label to use to retrieve the job name from.
       # jobLabel: "app.kubernetes.io/name"
       namespace: ""
-      namespaceSelector: {}
+      #namespaceSelector: {}
       # Default: scrape .Release.Namespace only
       # To scrape all, use the following:
-      # namespaceSelector:
-      #   any: true
-      scrapeInterval: 30s
+      namespaceSelector:
+        any: true
+      scrapeInterval: 5s
       # honorLabels: true
       targetLabels: []
       metricRelabelings: []
